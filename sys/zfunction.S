@@ -1,0 +1,2 @@
+    .globl zfunction
+zfunction:
