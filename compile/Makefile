@@ -68,7 +68,7 @@ SYSOBJ = ${SYS:%.c=%.o}
 
 TTYOBJ = ${TTY:%.c=%.o}
 
-XOBJ = startup.o initialize.o intr.o clkint.o ctxsw.o
+XOBJ = startup.o initialize.o intr.o clkint.o ctxsw.o zfunction.o
 
 OBJ =	${COMOBJ} ${MONOBJ} ${SYSOBJ} ${TTYOBJ}		\
 	moncksum.o monclkint.o comint.o ethint.o montftp.o
@@ -141,6 +141,9 @@ ${LIB}/libxc.a: FRC
 
 intr.o: ../sys/intr.S
 	${CPP} ${SDEFS} ../sys/intr.S | ${AS} ${ASFLAGS} -o intr.o
+
+zfunction.o: ../sys/zfunction.S
+	${CPP} ${SDEFS} ../sys/zfunction.S | ${AS} ${ASFLAGS} -o zfunction.o
 
 clkint.o: ../sys/clkint.S
 	${CPP} ${SDEFS} ../sys/clkint.S | ${AS} ${ASFLAGS} -o clkint.o

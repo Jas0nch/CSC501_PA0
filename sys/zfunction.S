@@ -1,5 +1,5 @@
-    .globl zfunction
+	.text
+.globl zfunction
 zfunction:
-    push %ebp
-    pop %ebp
-    ret
+        leave
+        ret

@@ -1,5 +1,5 @@
 /* conf.h (GENERATED FILE; DO NOT EDIT) */
-extern long zfunction(long param);
+
 #define	NULLPTR	(char *)0
 
 /* Device table declarations */
