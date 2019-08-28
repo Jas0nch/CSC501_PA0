@@ -3,6 +3,7 @@ sites
 
 # Object files
 *.o
+../lib/libxc/*.o
 *.ko
 *.obj
 *.elf
