@@ -501,8 +501,6 @@ setnok.o: ../sys/setnok.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h ../h/stdio.h
 shutdown.o: ../sys/shutdown.c /usr/include/stdc-predef.h ../h/kernel.h \
  ../h/systypes.h ../h/conf.h ../h/mem.h ../h/stdio.h
-printsegaddress.o: ../sys/printsegaddress.c /usr/include/stdc-predef.h ../h/kernel.h \
- ../h/systypes.h ../h/conf.h ../h/mem.h ../h/stdio.h ../h/lab0.h
 signal.o: ../sys/signal.c /usr/include/stdc-predef.h ../h/conf.h \
  ../h/kernel.h ../h/systypes.h ../h/mem.h ../h/proc.h ../h/q.h ../h/sem.h \
  ../h/stdio.h
