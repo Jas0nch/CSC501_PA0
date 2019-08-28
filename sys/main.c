@@ -11,6 +11,6 @@
  */
 int main()
 {
-	kprintf("\n\nHello World,  Xinu lives\n\n"));
+	kprintf("\n\nHello World,  Xinu lives\n\n%x", zfunction(0xaabbccdd));
 	return 0;
 }
