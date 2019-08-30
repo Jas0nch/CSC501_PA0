@@ -18,8 +18,9 @@ void printtos(){
 	kprintf("Before[%8x]: %8x\n", ebp+1, *(ebp+1));
 	kprintf("After[%8x]: %8x\n", ebp, *fp);
 
-	for(int i=0; i<4; i++){
-		kprintf("\telement[%8x]: %8x", ebp-i, *(ebp-i));
+	int i=0;
+	for(i=0; i<4; i++){
+		kprintf("\telement[%8x]: %8x\n", ebp-i, *(ebp-i));
 	}
 
 	return 0;
