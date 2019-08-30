@@ -16,5 +16,6 @@ int main()
 	printsegaddress();
 	printtos();
 	printprocstks(-1);
+	printsyscallsummary();
 	return 0;
 }
