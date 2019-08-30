@@ -1,24 +1,26 @@
 #include <stdio.h>
 #include <lab0.h>
 
+// reference: https://www.cnblogs.com/taek/archive/2012/02/05/2338877.html 
+//To-do write my idea down after the five function completed
 
-static unsigned long	*esp;
 static unsigned long	*ebp;
 
 void printtos(){
 	printf("this is printtos!");
-	unsigned long	*sp, *fp;
+	unsigned long	*fp;
 
-	asm("movl %esp,esp");
 	asm("movl %ebp,ebp");
 
-	sp = esp;
 	fp = ebp;
 
 	kprintf("void printtos()\n");
-	kprintf("Before[%8x]: %8x\n", ebp, *fp);
-	kprintf("After[%8x]: %8x\n", ebp+1, *(ebp+1));
+	kprintf("Before[%8x]: %8x\n", ebp+1, *(ebp+1));
+	kprintf("After[%8x]: %8x\n", ebp, *fp);
 
+	for(int i=0; i<4; i++){
+		kprintf("\telement[%8x]: %8x", ebp-i, *(ebp-i));
+	}
 
 	return 0;
 }
