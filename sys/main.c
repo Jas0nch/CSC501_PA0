@@ -15,6 +15,6 @@ int main()
 	kprintf("\n\nHello World,  Xinu lives\n\n%x\n\n", zfunction(0xaabbccdd));
 	printsegaddress();
 	printtos();
-	printprocstks(0);
+	printprocstks(-1);
 	return 0;
 }

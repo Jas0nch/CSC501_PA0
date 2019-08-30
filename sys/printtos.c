@@ -16,7 +16,7 @@ void printtos(){
 
 	kprintf("void printtos()\n");
 	kprintf("Before[0x%08x]: 0x%08x\n", ebp+1, *(ebp+1));
-	kprintf("After[0x%08x]: 0x%08x\n", ebp, *fp);
+	kprintf("After [0x%08x]: 0x%08x\n", ebp, *fp);
 
 	int i=0;
 	for(i=0; i<4; i++){
