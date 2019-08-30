@@ -15,12 +15,12 @@ void printtos(){
 	fp = ebp;
 
 	kprintf("void printtos()\n");
-	kprintf("Before[%8x]: %8x\n", ebp+1, *(ebp+1));
-	kprintf("After[%8x]: %8x\n", ebp, *fp);
+	kprintf("Before[0x%08x]: 0x%08x\n", ebp+1, *(ebp+1));
+	kprintf("After[0x%08x]: 0x%08x\n", ebp, *fp);
 
 	int i=0;
 	for(i=0; i<4; i++){
-		kprintf("\telement[%8x]: %8x\n", ebp-i, *(ebp-i));
+		kprintf("\telement[0x%08x]: 0x%08x\n", ebp-i, *(ebp-i));
 	}
 
 	return 0;
