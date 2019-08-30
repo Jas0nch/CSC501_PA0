@@ -7,7 +7,7 @@
 static unsigned long	*ebp;
 
 void printtos(){
-	//printf("this is printtos!");
+	//kprintf("this is printtos!");
 	unsigned long	*fp;
 
 	asm("movl %ebp,ebp");
