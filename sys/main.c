@@ -16,6 +16,11 @@ int main()
 	printsegaddress();
 	printtos();
 	printprocstks(-1);
-	printsyscallsummary();
+
+	syssummary_start();        
+	sleep(10);
+	syssummary_stop();
+	printsyssummary();
+
 	return 0;
 }

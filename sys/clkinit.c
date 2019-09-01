@@ -90,3 +90,7 @@ int clktest()
 	kprintf("from clkint, clktime %d\n", clktime);
         return(OK);
 }
+
+unsigned long GetCtr1000(){
+	return ctr1000;
+}
