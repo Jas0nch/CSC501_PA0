@@ -20,7 +20,7 @@ int main()
 	syssummary_start();        
 	sleep(10);
 	syssummary_stop();
-	printsyssummary();
+	printsyscallsummary();
 
 	return 0;
 }
