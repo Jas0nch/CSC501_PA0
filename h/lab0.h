@@ -3,6 +3,8 @@ void printsegaddress();
 void printtos();
 void printprocstks(int priority);
 void printsyscallsummary();
+void syssummary_start();
+void syssummary_stop();
 
 #define NSYSCALLTOTRACE  1 // number of system call to trace
 extern int isTraced;
