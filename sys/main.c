@@ -12,13 +12,13 @@
  */
 int main()
 {
+	syscallsummary_start();
 	kprintf("\n\nHello World,  Xinu lives\n\n%x\n\n", zfunction(0xaabbccdd));
 	printsegaddress();
 	printtos();
 	printprocstks(-1);
 
-	syscallsummary_start();        
-	sleep(10);
+	getpid();
 	syscallsummary_stop();
 	printsyscallsummary();
 
