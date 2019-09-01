@@ -43,15 +43,18 @@ void printsyscallsummary()
 {
 	kprintf("\nvoid printsyscallsummary()");
 	int i = 0;
-	for (i = 0; i < NPROC && proctab[i].pstate != PRFREE; i++)
+	for (i = 0; i < NPROC; i++)
 	{
-		kprintf("\nProcess [pid:%d]", i);
-		int j = 0;
-		for (j = 0; j < NSYSCALLTOTRACE; j++)
+		if (proctab[i].pstate != PRFREE)
 		{
-			//if (syscallInfoArray[j].freq != 0)
+			kprintf("\nProcess [pid:%d]", i);
+			int j = 0;
+			for (j = 0; j < NSYSCALLTOTRACE; j++)
 			{
-				kprintf("\n\tSyscall: %s, count: %d, average execution time: %ul (ms)", syscallInfoArray[j].name, syscallInfoArray[j].freq, syscallInfoArray[j].averageTime);
+				if (syscallInfoArray[j].freq != 0)
+				{
+					kprintf("\n\tSyscall: %s, count: %d, average execution time: %ul (ms)", syscallInfoArray[j].name, syscallInfoArray[j].freq, syscallInfoArray[j].averageTime);
+				}
 			}
 		}
 	}
