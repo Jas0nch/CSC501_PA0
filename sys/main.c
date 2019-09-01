@@ -17,9 +17,9 @@ int main()
 	printtos();
 	printprocstks(-1);
 
-	syssummary_start();        
+	syscallsummary_start();        
 	sleep(10);
-	syssummary_stop();
+	syscallsummary_stop();
 	printsyscallsummary();
 
 	return 0;
