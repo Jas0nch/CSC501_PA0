@@ -13,9 +13,9 @@ void syscallsummary_start()
 	isTraced = 1;
 	int i = 0;
 	int j = 0;
-	for (; j < NPROC; j++)
+	for (j = 0; j < NPROC; j++)
 	{
-		for (; i < NSYSCALLTOTRACE; i++)
+		for (i = 0; i < NSYSCALLTOTRACE; i++)
 		{
 			strcpy(syscallInfoArray[j][i].name, syscallname[i]);
 			syscallInfoArray[j][i].freq = 0;
