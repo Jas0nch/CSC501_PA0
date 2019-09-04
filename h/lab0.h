@@ -1,4 +1,4 @@
-#define NPROC 50;
+#define NPROC 50
 
 extern long zfunction (long param);
 void printsegaddress();
