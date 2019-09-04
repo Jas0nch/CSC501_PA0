@@ -1,3 +1,5 @@
+#include <conf.h>
+
 extern long zfunction (long param);
 void printsegaddress();
 void printtos();
