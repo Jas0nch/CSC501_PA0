@@ -19,8 +19,15 @@ int main()
 	printprocstks(-1);
 
 	getpid();
+	int prX;
+	resume(prX = create((int *) anotherProc,1024,20,"proc X", 1));
 	syscallsummary_stop();
 	printsyscallsummary();
 
+	return 0;
+}
+
+int anotherProc(){
+	getpid();
 	return 0;
 }

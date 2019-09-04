@@ -16,5 +16,5 @@ extern struct SyscallInfo
         unsigned long averageTime;
 };
 
-extern struct SyscallInfo syscallInfoArray[NSYSCALLTOTRACE]; 
-void UpdateSysCallInfo(unsigned long time, char name[20]);
+extern struct SyscallInfo syscallInfoArray[NPROC][NSYSCALLTOTRACE]; 
+void UpdateSysCallInfo(unsigned long time, char name[20], int pid);

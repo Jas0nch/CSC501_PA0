@@ -15,7 +15,7 @@ SYSCALL getpid()
 	{
 		unsigned long start = GetCtr1000();
 		sleep(1);
-		UpdateSysCallInfo(GetCtr1000() - start, "getpid");
+		UpdateSysCallInfo(GetCtr1000() - start, "getpid", currpid);
 	}
 	return (currpid);
 }

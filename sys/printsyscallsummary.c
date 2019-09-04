@@ -5,18 +5,21 @@
 
 const char syscallname[NSYSCALLTOTRACE][20] = {"getpid"};
 
-struct SyscallInfo syscallInfoArray[NSYSCALLTOTRACE];
+struct SyscallInfo syscallInfoArray[NPROC][NSYSCALLTOTRACE];
 int isTraced = 0;
 
 void syscallsummary_start()
 {
 	isTraced = 1;
 	int i = 0;
-	for (; i < NSYSCALLTOTRACE; i++)
+	for (int j = 0; j < NPROC; j++)
 	{
-		strcpy(syscallInfoArray[i].name, syscallname[i]);
-		syscallInfoArray[i].freq = 0;
-		syscallInfoArray[i].averageTime = 0;
+		for (; i < NSYSCALLTOTRACE; i++)
+		{
+			strcpy(syscallInfoArray[j][i].name, syscallname[i]);
+			syscallInfoArray[j][i].freq = 0;
+			syscallInfoArray[j][i].averageTime = 0;
+		}
 	}
 }
 
@@ -25,15 +28,15 @@ void syscallsummary_stop()
 	isTraced = 0;
 }
 
-void UpdateSysCallInfo(unsigned long time, char name[20])
+void UpdateSysCallInfo(unsigned long time, char name[20], int pid)
 {
 	int i = 0;
 	for (i = 0; i < NSYSCALLTOTRACE; i++)
 	{
-		if (strcmp(name, syscallInfoArray[i].name) == 0)
+		if (strcmp(name, syscallInfoArray[pid][i].name) == 0)
 		{
-			syscallInfoArray[i].averageTime = (time + syscallInfoArray[i].averageTime * syscallInfoArray[i].freq) / (syscallInfoArray[i].freq + 1);
-			syscallInfoArray[i].freq++;
+			syscallInfoArray[pid][i].averageTime = (time + syscallInfoArray[pid][i].averageTime * syscallInfoArray[pid][i].freq) / (syscallInfoArray[pid][i].freq + 1);
+			syscallInfoArray[pid][i].freq++;
 			break;
 		}
 	}
@@ -51,9 +54,9 @@ void printsyscallsummary()
 			int j = 0;
 			for (j = 0; j < NSYSCALLTOTRACE; j++)
 			{
-				if (syscallInfoArray[j].freq != 0)
+				if (syscallInfoArray[i][j].freq != 0)
 				{
-					kprintf("\n\tSyscall: %s, count: %d, average execution time: %ul (ms)", syscallInfoArray[j].name, syscallInfoArray[j].freq, syscallInfoArray[j].averageTime);
+					kprintf("\n\tSyscall: %s, count: %d, average execution time: %ul (ms)", syscallInfoArray[i][j].name, syscallInfoArray[i][j].freq, syscallInfoArray[i][j].averageTime);
 				}
 			}
 		}
