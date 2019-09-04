@@ -29,6 +29,7 @@ int main()
 	getpid();
 	int prX;
 	resume(prX = create((int *) anotherProc,1024,20,"proc X", 1, 'A'));
+	sleep(10);
 	syscallsummary_stop();
 	printsyscallsummary();
 	kprintf("\n%d", prX);
