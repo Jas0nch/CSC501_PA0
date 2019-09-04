@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conf.h>
 #include <kernel.h>
 #include <proc.h>
 #include <lab0.h>
