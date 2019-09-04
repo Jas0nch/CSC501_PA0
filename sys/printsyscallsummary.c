@@ -12,7 +12,8 @@ void syscallsummary_start()
 {
 	isTraced = 1;
 	int i = 0;
-	for (int j = 0; j < NPROC; j++)
+	int j = 0;
+	for (; j < NPROC; j++)
 	{
 		for (; i < NSYSCALLTOTRACE; i++)
 		{
