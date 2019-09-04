@@ -13,6 +13,7 @@
 
 
 int anotherProc(){
+	kprintf("\n start anotherProc");
 	getpid();
 	return 0;
 }
@@ -30,7 +31,7 @@ int main()
 	resume(prX = create((int *) anotherProc,1024,20,"proc X", 1, 'A'));
 	syscallsummary_stop();
 	printsyscallsummary();
-	kprintf("/n%d", prX);
+	kprintf("\n%d", prX);
 
 	return 0;
 }
