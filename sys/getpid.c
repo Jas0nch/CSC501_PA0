@@ -11,12 +11,9 @@
  */
 SYSCALL getpid()
 {
-	kprintf("\n start getpid");
+	unsigned long start = GetCtr1000();
 	if (isTraced == 1)
 	{
-		unsigned long start = GetCtr1000();
-		sleep(1);
-		kprintf("\n current pid: %d", currpid);
 		UpdateSysCallInfo(GetCtr1000() - start, "getpid", currpid);
 	}
 	return (currpid);

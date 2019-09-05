@@ -13,7 +13,6 @@
 
 
 int anotherProc(){
-	kprintf("\n start anotherProc");
 	getpid();
 	sleep(10);
 	return 0;
