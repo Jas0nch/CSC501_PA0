@@ -43,3 +43,5 @@ When calling printtos, first push ebp of main to the stack, and then make the es
 assembly code: PUSH %ebp, MOV %ebp, %esp
 
 3.
+Yes, it shows all of my variables. The first 2 are 0 which I don't know why. And the third one is the pointer I use to point the ebp so that I can know that this is the pointer I declared. The fourth is an counter I used for the loop and end with the value 3.
+
