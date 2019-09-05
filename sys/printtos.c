@@ -20,7 +20,7 @@ void printtos(){
 
 	int i=0;
 	for(i=0; i<4; i++){
-		kprintf("\telement[0x%08x]: 0x%08x\n", ebp-i, *(ebp-i));
+		kprintf("\telement[0x%08x]: 0x%08x\n", ebp-i-1, *(ebp-i-1));
 	}
 
 	return 0;
