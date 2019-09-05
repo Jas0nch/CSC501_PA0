@@ -1,5 +1,5 @@
 #
-#  Makefile for CSC501 Xinu.
+#   for CSC501 Xinu.
 #
 
 INCLUDE = -I../h
@@ -11,7 +11,7 @@ ASFLAGS = --32
 CC      =       /usr/bin/gcc
 cPP     =       /usr/bin/gcc -E
 AS      =       /usr/bin/as
-LD      =       /usr/bin/gcc
+LD      =       /usr/bin/ld
 MAKETD  =	/usr/X11R6/bin/makedepend
 AWK	=	awk
 LIB     =       ../lib
@@ -80,9 +80,9 @@ OBJ =	${COMOBJ} ${MONOBJ} ${SYSOBJ} ${TTYOBJ}		\
 #------------------------------------------------------------------------
 all: xinu.elf
 
-xinu.elf: Makefile Configuration ../h/conf.h ${XOBJ} ${OBJ} ${LIB}/libxc.a
+xinu.elf:  Configuration ../h/conf.h ${XOBJ} ${OBJ} ${LIB}/libxc.a
 	cp ../o/* .
-	$(LD) -m32 -dn -Ttext 0x10000 -e start ${XOBJ} ${OBJ} ${LIB}/libxc.a \
+	$(LD) -m elf_i386 -dn -Ttext 0x10000 -e start ${XOBJ} ${OBJ} ${LIB}/libxc.a \
 	-o ${XINU}.elf
 
 clean: FRC
@@ -92,14 +92,14 @@ clean: FRC
 	(cd ${LIB}/libxc; ${MAKE} clean)
 
 depend: makedep
-	sed -e '1,/^# DO NOT DELETE THIS LINE/!d' Makefile > Makefile.base
-	cat Makefile.base makedep > Makefile
-	rm Makefile.base makedep makedep1 makedeperrs
+	sed -e '1,/^# DO NOT DELETE THIS LINE/!d'  > .base
+	cat .base makedep > 
+	rm .base makedep makedep1 makedeperrs
 	@rm -f ../h/conf.h
 
 undepend:
-	sed -e '1,/^# DO NOT DELETE THIS LINE/!d' Makefile > Makefile.base
-	mv Makefile.base Makefile
+	sed -e '1,/^# DO NOT DELETE THIS LINE/!d'  > .base
+	mv .base 
 
 CFILES = ../*/*.c ../*/*/*.c
 
@@ -133,7 +133,7 @@ tags: FRC
 	ctags -R ..
 
 ../config/config:
-	make -C ../config/ -f ../config/Makefile clean all
+	make -C ../config/ -f ../config/ clean all
 
 ../h/conf.h ../sys/conf.c: ../config/config Configuration
 	../config/config; mv conf.c ../sys 
@@ -156,7 +156,7 @@ ctxsw.o: ../sys/ctxsw.S
 ethint.o: ../mon/ethint.S
 	${CPP} ${SDEFS} ../mon/ethint.S | ${AS} ${ASFLAGS} -o ethint.o
 
-startup.o: ../sys/startup.S Makefile
+startup.o: ../sys/startup.S 
 	${CPP} ${SDEFS} -DBRELOC=${BRELOC} -DBOOTPLOC=${BOOTPLOC} \
 	../sys/startup.S | ${AS} ${ASFLAGS} -o startup.o 
 
