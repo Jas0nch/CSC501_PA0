@@ -14,9 +14,7 @@
 
 int anotherProc(){
 	getpid();
-	receive();
-	recvclr();
-	sleep(10);
+	sleep(11);
 	return 0;
 }
 
@@ -29,10 +27,7 @@ int main()
 	printprocstks(-1);
 
 	getpid();
-	receive();
-	recvclr();
-	receive();
-	recvclr();
+getpid();
 	resume(create((int *) anotherProc,1024,20,"proc X", 1, 'A'));
 	sleep(10);
 	syscallsummary_stop();
