@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sleep.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  * unsleep  --  remove  process from the sleep queue prematurely
@@ -13,6 +14,8 @@
  */
 SYSCALL	unsleep(int pid)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;
 	struct	qent	*qptr;
@@ -36,5 +39,9 @@ SYSCALL	unsleep(int pid)
 	else
 		slnempty = FALSE;
         restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "unsleep", currpid);
+	}
 	return(OK);
 }

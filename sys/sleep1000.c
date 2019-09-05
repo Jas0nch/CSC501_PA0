@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sleep.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  * sleep1000 --  delay the caller for a time specified in 1/100 of seconds
@@ -13,6 +14,8 @@
  */
 SYSCALL sleep1000(int n)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 
 	if (n < 0  || clkruns==0)
@@ -28,5 +31,9 @@ SYSCALL sleep1000(int n)
 	}
 	resched();
         restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "sleep1000", currpid);
+	}
 	return(OK);
 }

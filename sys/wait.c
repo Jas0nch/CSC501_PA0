@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sem.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  * wait  --  make current process wait on a semaphore
@@ -13,6 +14,8 @@
  */
 SYSCALL	wait(int sem)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	sentry	*sptr;
 	struct	pentry	*pptr;
@@ -33,5 +36,9 @@ SYSCALL	wait(int sem)
 		return pptr->pwaitret;
 	}
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "wait", currpid);
+	}
 	return(OK);
 }

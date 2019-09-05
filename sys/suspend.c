@@ -5,6 +5,7 @@
 #include <proc.h>
 #include <q.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  suspend  --  suspend a process, placing it in hibernation
@@ -12,6 +13,8 @@
  */
 SYSCALL	suspend(int pid)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;		/* pointer to proc. tab. entry	*/
 	int	prio;			/* priority returned		*/
@@ -32,5 +35,9 @@ SYSCALL	suspend(int pid)
 	}
 	prio = pptr->pprio;
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "suspend", currpid);
+	}
 	return(prio);
 }

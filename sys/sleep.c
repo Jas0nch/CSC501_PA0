@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sleep.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  * sleep  --  delay the calling process n seconds
@@ -13,6 +14,8 @@
  */
 SYSCALL	sleep(int n)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	if (n<0 || clkruns==0)
 		return(SYSERR);
@@ -28,5 +31,9 @@ SYSCALL	sleep(int n)
 	}
 	if (n > 0)
 		sleep10(10*n);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "sleep", currpid);
+	}
 	return(OK);
 }

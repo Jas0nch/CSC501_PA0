@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sem.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  sreset  --  reset the count and queue of a semaphore
@@ -13,6 +14,8 @@
  */
 SYSCALL sreset(int sem, int count)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	sentry	*sptr;
 	int	pid;
@@ -30,5 +33,9 @@ SYSCALL sreset(int sem, int count)
 	sptr->semcnt = count;
 	resched();
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "sreset", currpid);
+	}
 	return(OK);
 }

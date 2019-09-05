@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sleep.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  recvtim  -  wait to receive a message or timeout and return result
@@ -13,6 +14,8 @@
  */
 SYSCALL	recvtim(int maxwait)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;
 	int	msg;
@@ -35,5 +38,9 @@ SYSCALL	recvtim(int maxwait)
 		msg = TIMEOUT;
 	}
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "recvtim", currpid);
+	}
 	return(msg);
 }

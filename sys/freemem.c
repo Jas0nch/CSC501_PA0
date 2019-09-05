@@ -4,6 +4,7 @@
 #include <kernel.h>
 #include <mem.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  freemem  --  free a memory block, returning it to memlist
@@ -11,6 +12,8 @@
  */
 SYSCALL	freemem(struct mblock *block, unsigned size)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	mblock	*p, *q;
 	unsigned top;
@@ -42,5 +45,9 @@ SYSCALL	freemem(struct mblock *block, unsigned size)
 		q->mnext = p->mnext;
 	}
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "freemem", getpid());
+	}
 	return(OK);
 }

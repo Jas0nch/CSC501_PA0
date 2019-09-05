@@ -6,6 +6,7 @@
 #include <q.h>
 #include <sem.h>
 #include <stdio.h>
+#include <lab0.h>
 
 LOCAL int newsem();
 
@@ -15,6 +16,8 @@ LOCAL int newsem();
  */
 SYSCALL screate(int count)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	int	sem;
 
@@ -26,6 +29,10 @@ SYSCALL screate(int count)
 	semaph[sem].semcnt = count;
 	/* sqhead and sqtail were initialized at system startup */
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "screate", currpid);
+	}
 	return(sem);
 }
 

@@ -4,6 +4,7 @@
 #include <kernel.h>
 #include <proc.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  send  --  send a message to another process
@@ -11,6 +12,8 @@
  */
 SYSCALL	send(int pid, WORD msg)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;
 
@@ -29,5 +32,9 @@ SYSCALL	send(int pid, WORD msg)
 		ready(pid, RESCHYES);
 	}
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "send", currpid);
+	}
 	return(OK);
 }

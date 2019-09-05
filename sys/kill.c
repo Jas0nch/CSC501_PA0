@@ -8,6 +8,7 @@
 #include <io.h>
 #include <q.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  * kill  --  kill a process and remove it from the system
@@ -15,6 +16,8 @@
  */
 SYSCALL kill(int pid)
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;		/* points to proc. table for pid*/
 	int	dev;
@@ -57,5 +60,9 @@ SYSCALL kill(int pid)
 	default:	pptr->pstate = PRFREE;
 	}
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "kill", currpid);
+	}
 	return(OK);
 }

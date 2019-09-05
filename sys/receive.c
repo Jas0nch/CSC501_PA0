@@ -4,6 +4,7 @@
 #include <kernel.h>
 #include <proc.h>
 #include <stdio.h>
+#include <lab0.h>
 
 /*------------------------------------------------------------------------
  *  receive  -  wait for a message and return it
@@ -11,6 +12,8 @@
  */
 SYSCALL	receive()
 {
+	unsigned long start = GetCtr1000();
+
 	STATWORD ps;    
 	struct	pentry	*pptr;
 	WORD	msg;
@@ -24,5 +27,9 @@ SYSCALL	receive()
 	msg = pptr->pmsg;		/* retrieve message		*/
 	pptr->phasmsg = FALSE;
 	restore(ps);
+	if (isTraced == 1)
+	{
+		UpdateSysCallInfo(GetCtr1000() - start, "receive", currpid);
+	}
 	return(msg);
 }
