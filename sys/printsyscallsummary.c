@@ -3,7 +3,7 @@
 #include <proc.h>
 #include <lab0.h>
 
-const char syscallname[NSYSCALLTOTRACE][20] = {"getpid"};
+const char syscallname[NSYSCALLTOTRACE][20] = {"freemem", "chprio", "getpid", "getprio", "gettime", "kill", "receive", "recvclr", "recvtim", "resume", "scount", "sdelete", "send", "setdev", "setnok", "screate", "signal", "signaln", "sleep", "sleep10", "sleep100", "sleep1000", "sreset", "stacktrace", "suspend", "unsleep", "wait"};
 
 struct SyscallInfo syscallInfoArray[NPROC][NSYSCALLTOTRACE];
 int isTraced = 0;

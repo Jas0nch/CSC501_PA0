@@ -8,7 +8,7 @@ void printsyscallsummary();
 void syscallsummary_start();
 void syscallsummary_stop();
 
-#define NSYSCALLTOTRACE  1 // number of system call to trace
+#define NSYSCALLTOTRACE  27 // number of system call to trace
 
 extern int isTraced;
 extern struct SyscallInfo
