@@ -11,7 +11,7 @@ ASFLAGS = --32
 CC      =       /usr/bin/gcc
 cPP     =       /usr/bin/gcc -E
 AS      =       /usr/bin/as
-LD      =       /usr/bin/gcc
+LD      =       /usr/bin/ld
 MAKETD  =	/usr/X11R6/bin/makedepend
 AWK	=	awk
 LIB     =       ../lib
@@ -82,7 +82,7 @@ all: xinu.elf
 
 xinu.elf: Makefile Configuration ../h/conf.h ${XOBJ} ${OBJ} ${LIB}/libxc.a
 	cp ../o/* .
-	$(LD) -m32 -dn -Ttext 0x10000 -e start ${XOBJ} ${OBJ} ${LIB}/libxc.a \
+	$(LD) -m elf_i386 -dn -Ttext 0x10000 -e start ${XOBJ} ${OBJ} ${LIB}/libxc.a \
 	-o ${XINU}.elf
 
 clean: FRC

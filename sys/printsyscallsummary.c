@@ -57,7 +57,7 @@ void printsyscallsummary()
 			{
 				if (syscallInfoArray[i][j].freq != 0)
 				{
-					kprintf("\n\tSyscall: %s, count: %d, average execution time: %ul (ms)", syscallInfoArray[i][j].name, syscallInfoArray[i][j].freq, syscallInfoArray[i][j].averageTime);
+					kprintf("\n\tSyscall: sys_%s, count: %d, average execution time: %ul (ms)", syscallInfoArray[i][j].name, syscallInfoArray[i][j].freq, syscallInfoArray[i][j].averageTime);
 				}
 			}
 		}
