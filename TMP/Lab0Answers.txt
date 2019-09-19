@@ -1,0 +1,47 @@
+1. XINU's memory layout                                                                         
+                                                                                                HIGHER ADDRESS
+
+|       FREE MEMORY                            |                                              
+|   ----------------------------------------------| base pointer                0x00fffffc             
+|          variables                              |             
+|   PROCESS---------------------------------------| stack pointer               0x00ffff2c             
+|          ......                                 |             
+|   PRNULL----------------------------------------| limit                       0x00fff000             
+|       ......                                 |             
+|----------------------------------------------|             
+|   ----------------------------------------------| base pointer                0x00ffeff8                             
+|          variables                              |             
+|   PROCESS---------------------------------------| stack pointer               0x00ffef90             
+|          ......                                 |             
+|   MAIN------------------------------------------| limit                       0x00ffdffc             
+|       ......                                 |             
+|----------------------------------------------|             
+|       ......                                 |             
+|----------------------------------------------| end                            0x0002d558             
+|       end(BSS segment)                       |             
+|----------------------------------------------| edata                          0x0001e57d             
+|       data (initialized data here)           |             
+|----------------------------------------------| etext                          0x00019108             
+|       text (code you write)                  |              
+|----------------------------------------------| start address                  0x0             
+            XINU's MEMORY LAYOUT                 DESCRIPTION                    ADDRESS         LOWER ADDRESS                            
+
+2.  
+Address before calling printtos(): 0x00ffeff0
+Address after calling printtos(): 0x00ffefec
+| ......                                             | stack base/higher address
+| return address of printtos                         | esp before: 0x00ffeff0 
+| ebp of main/some function which is calling printtos| esp after: 0x00ffefec
+| variable 1                                         |
+| variable 2                                         |
+| ......                                             |
+| return address                                     | esp when load all variables
+| ......                                             | stack top/lower address
+
+Before calling printtos, the pointer of stack top is point to the return address of printtos.
+When calling printtos, first push ebp of main to the stack, and then make the esp equals to the ebp.
+assembly code: PUSH %ebp, MOV %ebp, %esp
+
+3.
+Yes, it shows all of my variables. The first 2 are 0 which I don't know why. And the third one is the pointer I use to point the ebp so that I can know that this is the pointer I declared. The fourth is an counter I used for the loop and end with the value 3.
+
